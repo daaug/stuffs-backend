@@ -1,2 +1,6 @@
 uvicorn
 fastapi[standard]
+python-dotenv
+peewee
+pymysql
+cryptography
