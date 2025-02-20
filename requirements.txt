@@ -1,6 +1,6 @@
 uvicorn
 fastapi[standard]
 python-dotenv
-peewee
+sqlalchemy
 pymysql
 cryptography
