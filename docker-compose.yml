@@ -14,6 +14,10 @@ services:
       - "8000:80"
     volumes:
       - .:/code
+    depends_on:
+      stuffs-mysql:
+        condition: service_healthy
+    command: bash -c "python3 /code/models/create_db.py"
     networks:
       - stuffs-backend
   stuffs-mysql:
@@ -22,6 +26,11 @@ services:
       - MYSQL_ROOT_PASSWORD=${DB_PASS}
     ports:
       - "8001:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 15s
+      timeout: 5s
+      retries: 2
     networks:
       - stuffs-backend
 
